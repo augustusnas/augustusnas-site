@@ -1,49 +1,101 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Base from '../layouts/Base.astro';
 ---
+<Base title="Augustus Nas — Consultant, Coach & Mentor">
+<style>
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; border-bottom: 1px solid var(--rule); }
+  .hero-left { padding: 64px 40px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--rule); }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+  .hero-headline { font-family: var(--serif); font-size: clamp(32px, 4vw, 52px); line-height: 1.1; font-weight: 700; margin-bottom: 28px; letter-spacing: -0.02em; }
+  .hero-sub { font-size: 15px; line-height: 1.7; color: var(--mid); max-width: 380px; margin-bottom: 40px; font-weight: 300; }
+  .btn-primary { display: inline-block; padding: 12px 28px; background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .btn-primary:hover { background: var(--accent); }
+  .hero-right { background: var(--ink); display: flex; align-items: center; justify-content: center; padding: 40px; position: relative; overflow: hidden; }
+  .hero-monogram { font-family: var(--serif); font-size: 180px; font-weight: 700; color: rgba(255,255,255,0.06); position: absolute; line-height: 1; user-select: none; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.1); width: 100%; max-width: 320px; position: relative; z-index: 2; }
+  .stat-cell { background: rgba(255,255,255,0.04); padding: 28px 24px; text-align: center; }
+  .stat-num { font-family: var(--serif); font-size: 36px; color: white; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em; text-transform: uppercase; }
+  .services-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
+  .service-cell { padding: 40px; border-right: 1px solid var(--rule); }
+  .service-cell:last-child { border-right: none; }
+  .service-num { font-family: var(--serif); font-size: 11px; color: var(--accent); margin-bottom: 16px; display: block; }
+  .service-title { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 12px; line-height: 1.2; }
+  .service-desc { font-size: 13px; line-height: 1.7; color: var(--mid); }
+  .section-header { display: flex; align-items: baseline; justify-content: space-between; padding: 32px 40px 24px; border-bottom: 1px solid var(--rule); }
+  .section-title { font-family: var(--serif); font-size: 22px; font-weight: 700; }
+  .section-link { font-size: 12px; color: var(--mid); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; }
+  .section-link:hover { color: var(--accent); }
+  .featured-posts { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
+  .post-card { padding: 32px 40px; border-right: 1px solid var(--rule); text-decoration: none; color: inherit; transition: background 0.15s; display: block; }
+  .post-card:last-child { border-right: none; }
+  .post-card:hover { background: white; }
+  .post-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 500; }
+  .post-title { font-family: var(--serif); font-size: 18px; line-height: 1.3; font-weight: 700; margin-bottom: 12px; }
+  .post-excerpt { font-size: 13px; line-height: 1.7; color: var(--mid); margin-bottom: 16px; }
+  .post-meta { font-size: 11px; color: var(--mid); }
+  .cta-strip { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 40px; gap: 24px; }
+  .cta-text { font-family: var(--serif); font-size: 22px; font-style: italic; font-weight: 400; line-height: 1.4; }
+</style>
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Consultant · Coach · Mentor</div>
+    <h1 class="hero-headline">Strategy that moves businesses forward</h1>
+    <p class="hero-sub">I work with founders and leadership teams to sharpen thinking, build better systems, and grow with intention.</p>
+    <a class="btn-primary" href="/about">About me →</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram">AN</div>
+    <div class="hero-stats">
+      <div class="stat-cell"><div class="stat-num">12+</div><div class="stat-label">Years</div></div>
+      <div class="stat-cell"><div class="stat-num">60+</div><div class="stat-label">Clients</div></div>
+      <div class="stat-cell"><div class="stat-num">3</div><div class="stat-label">Sectors</div></div>
+      <div class="stat-cell"><div class="stat-num">£M+</div><div class="stat-label">Value Created</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="services-strip">
+  <div class="service-cell">
+    <span class="service-num">01</span>
+    <div class="service-title">Business Consulting</div>
+    <p class="service-desc">Diagnosing where growth is stalling and building the operating model to fix it. Strategy without execution theatre.</p>
+  </div>
+  <div class="service-cell">
+    <span class="service-num">02</span>
+    <div class="service-title">Executive Coaching</div>
+    <p class="service-desc">One-to-one work with founders and senior leaders navigating inflection points, transitions, and high-stakes decisions.</p>
+  </div>
+  <div class="service-cell">
+    <span class="service-num">03</span>
+    <div class="service-title">Mentorship</div>
+    <p class="service-desc">Long-form relationships with ambitious professionals building toward leadership. Honest, experienced, direct.</p>
+  </div>
+</div>
+
+<div class="section-header">
+  <div class="section-title">Recent writing</div>
+  <a class="section-link" href="/blog">All posts →</a>
+</div>
+
+<div class="featured-posts">
+  <a class="post-card" href="/blog/why-businesses-plateau">
+    <div class="post-tag">Strategy</div>
+    <div class="post-title">Why Most Businesses Plateau at £1M — and What Actually Breaks the Ceiling</div>
+    <p class="post-excerpt">The constraint is rarely the market. It's almost always an operating model built for a business that no longer exists.</p>
+    <div class="post-meta">Apr 2025 · 6 min read</div>
+  </a>
+  <a class="post-card" href="/blog/delegation-problem">
+    <div class="post-tag">Leadership</div>
+    <div class="post-title">The Delegation Problem: Why Smart Founders Stay in the Weeds</div>
+    <p class="post-excerpt">Control feels like safety, but it's the single biggest limiter on organisational scale.</p>
+    <div class="post-meta">Mar 2025 · 5 min read</div>
+  </a>
+</div>
+
+<div class="cta-strip">
+  <div class="cta-text">"The best time to get strategic clarity<br>is before you need it urgently."</div>
+  <a class="btn-primary" href="mailto:hello@augustusnas.com">Get in touch →</a>
+</div>
+</Base>

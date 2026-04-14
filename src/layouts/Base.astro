@@ -1,0 +1,69 @@
+---
+const { title = 'Augustus Nas — Consultant, Coach & Mentor' } = Astro.props;
+const nav = [
+  { label: 'About', href: '/about' },
+  { label: 'Writing', href: '/blog' },
+  { label: 'Resources', href: '/resources' },
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #111;
+      --paper: #f8f6f1;
+      --mid: #6b6860;
+      --rule: #ddd9d0;
+      --accent: #c0392b;
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; display: flex; flex-direction: column; }
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--rule); background: var(--paper); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: var(--serif); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; color: var(--ink); }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); margin-top: auto; }
+    .footer-left { padding: 32px 40px; border-right: 1px solid var(--rule); }
+    .footer-logo { font-family: var(--serif); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .footer-logo span { color: var(--accent); }
+    .footer-tagline { font-size: 12px; color: var(--mid); }
+    .footer-right { padding: 32px 40px; display: flex; align-items: center; gap: 24px; justify-content: flex-end; }
+    .footer-email { font-size: 13px; color: var(--mid); text-decoration: none; }
+    .footer-email:hover { color: var(--accent); }
+    .footer-copy { font-size: 11px; color: var(--rule); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-logo" href="/">Augustus<span>.</span>Nas</a>
+    <ul class="nav-links">
+      {nav.map(link => <li><a href={link.href}>{link.label}</a></li>)}
+      <li><a href="mailto:hello@augustusnas.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <slot />
+
+  <footer>
+    <div class="footer-left">
+      <div class="footer-logo">Augustus<span>.</span>Nas</div>
+      <div class="footer-tagline">Consultant · Coach · Mentor · London, UK</div>
+    </div>
+    <div class="footer-right">
+      <a class="footer-email" href="mailto:hello@augustusnas.com">hello@augustusnas.com</a>
+      <span class="footer-copy">© 2025</span>
+    </div>
+  </footer>
+</body>
+</html>
