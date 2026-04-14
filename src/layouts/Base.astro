@@ -1,9 +1,10 @@
 ---
 const { title = 'Augustus Nas — Consultant, Coach & Mentor' } = Astro.props;
+const base = import.meta.env.BASE_URL;
 const nav = [
-  { label: 'About', href: '/about' },
-  { label: 'Writing', href: '/blog' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'About', href: `${base}about` },
+  { label: 'Writing', href: `${base}blog` },
+  { label: 'Resources', href: `${base}resources` },
 ];
 ---
 <!DOCTYPE html>
@@ -46,7 +47,7 @@ const nav = [
 </head>
 <body>
   <nav>
-    <a class="nav-logo" href="/">Augustus<span>.</span>Nas</a>
+    <a class="nav-logo" href={base}>Augustus<span>.</span>Nas</a>
     <ul class="nav-links">
       {nav.map(link => <li><a href={link.href}>{link.label}</a></li>)}
       <li><a href="mailto:hello@augustusnas.com">Contact</a></li>
