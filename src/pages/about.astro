@@ -17,6 +17,13 @@ import Base from '../layouts/Base.astro';
   .cred-cell { background: var(--paper); padding: 20px; }
   .cred-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin-bottom: 6px; }
   .cred-value { font-family: var(--serif); font-size: 14px; font-weight: 700; }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; min-height: auto; }
+    .about-left { border-right: none; border-bottom: 1px solid var(--rule); padding: 36px 20px; }
+    .about-initials { font-size: 52px; }
+    .about-right { padding: 32px 20px; }
+    .credentials { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 
 <div class="about-grid">

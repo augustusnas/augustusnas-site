@@ -33,6 +33,8 @@ const nav = [
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--ink); transition: transform 0.2s, opacity 0.2s; }
     footer { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--rule); margin-top: auto; }
     .footer-left { padding: 32px 40px; border-right: 1px solid var(--rule); }
     .footer-logo { font-family: var(--serif); font-size: 16px; font-weight: 700; margin-bottom: 8px; }
@@ -42,16 +44,38 @@ const nav = [
     .footer-email { font-size: 13px; color: var(--mid); text-decoration: none; }
     .footer-email:hover { color: var(--accent); }
     .footer-copy { font-size: 11px; color: var(--rule); }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; flex-wrap: wrap; position: relative; }
+      .nav-toggle { display: flex; }
+      .nav-links { display: none; width: 100%; flex-direction: column; gap: 0; padding: 12px 0 4px; border-top: 1px solid var(--rule); margin-top: 12px; }
+      .nav-links.open { display: flex; }
+      .nav-links li { list-style: none; }
+      .nav-links a { display: block; padding: 10px 0; font-size: 14px; letter-spacing: 0.04em; }
+      footer { grid-template-columns: 1fr; }
+      .footer-left { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 20px; }
+      .footer-right { padding: 24px 20px; justify-content: flex-start; }
+    }
   </style>
 </head>
 <body>
   <nav>
     <a class="nav-logo" href="/">Augustus<span>.</span>Nas</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       {nav.map(link => <li><a href={link.href}>{link.label}</a></li>)}
       <li><a href="mailto:hello@augustusnas.com">Contact</a></li>
     </ul>
   </nav>
+  <script>
+    const toggle = document.querySelector('.nav-toggle');
+    const links = document.querySelector('.nav-links');
+    toggle?.addEventListener('click', () => {
+      const open = links?.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(!!open));
+    });
+  </script>
 
   <slot />
 

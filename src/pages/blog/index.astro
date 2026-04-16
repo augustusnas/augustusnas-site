@@ -21,6 +21,13 @@ const posts = (await getCollection('blog')).sort(
   .blog-row-excerpt { font-size: 13px; color: var(--mid); line-height: 1.6; }
   .blog-arrow { font-size: 18px; color: var(--rule); padding-top: 2px; transition: color 0.15s; }
   .blog-row:hover .blog-arrow { color: var(--ink); }
+  @media (max-width: 768px) {
+    .blog-header { padding: 32px 20px 24px; }
+    .blog-headline { font-size: 32px; }
+    .blog-row { grid-template-columns: 1fr auto; gap: 12px; padding: 20px; }
+    .blog-date { display: none; }
+    .blog-row-title { font-size: 15px; }
+  }
 </style>
 
 <div class="blog-header">

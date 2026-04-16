@@ -1,5 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
 ---
 <Base title="Augustus Nas — Consultant, Coach & Mentor">
 <style>
@@ -36,6 +41,20 @@ import Base from '../layouts/Base.astro';
   .post-meta { font-size: 11px; color: var(--mid); }
   .cta-strip { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 40px; gap: 24px; }
   .cta-text { font-family: var(--serif); font-size: 22px; font-style: italic; font-weight: 400; line-height: 1.4; }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 40px 20px; border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-right { display: none; }
+    .services-strip { grid-template-columns: 1fr; }
+    .service-cell { border-right: none; border-bottom: 1px solid var(--rule); padding: 28px 20px; }
+    .service-cell:last-child { border-bottom: none; }
+    .section-header { padding: 24px 20px 20px; }
+    .featured-posts { grid-template-columns: 1fr; }
+    .post-card { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 20px; }
+    .post-card:last-child { border-bottom: none; }
+    .cta-strip { grid-template-columns: 1fr; padding: 32px 20px; }
+    .cta-text { font-size: 18px; }
+  }
 </style>
 
 <div class="hero">
@@ -80,18 +99,16 @@ import Base from '../layouts/Base.astro';
 </div>
 
 <div class="featured-posts">
-  <a class="post-card" href="/blog/why-businesses-plateau">
-    <div class="post-tag">Strategy</div>
-    <div class="post-title">Why Most Businesses Plateau at £1M — and What Actually Breaks the Ceiling</div>
-    <p class="post-excerpt">The constraint is rarely the market. It's almost always an operating model built for a business that no longer exists.</p>
-    <div class="post-meta">Apr 2025 · 6 min read</div>
-  </a>
-  <a class="post-card" href="/blog/delegation-problem">
-    <div class="post-tag">Leadership</div>
-    <div class="post-title">The Delegation Problem: Why Smart Founders Stay in the Weeds</div>
-    <p class="post-excerpt">Control feels like safety, but it's the single biggest limiter on organisational scale.</p>
-    <div class="post-meta">Mar 2025 · 5 min read</div>
-  </a>
+  {recentPosts.map(post => (
+    <a class="post-card" href={`/blog/${post.id}`}>
+      {post.data.tags && <div class="post-tag">{post.data.tags[0]}</div>}
+      <div class="post-title">{post.data.title}</div>
+      <p class="post-excerpt">{post.data.description}</p>
+      <div class="post-meta">
+        {post.data.pubDate.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}
+      </div>
+    </a>
+  ))}
 </div>
 
 <div class="cta-strip">
