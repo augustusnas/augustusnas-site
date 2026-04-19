@@ -2,11 +2,11 @@
 import Base from '../../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
-<Base title="Writing — Augustus Nas">
+<Base title="Thinking — Augustus Nas">
 <style>
   .blog-header { padding: 48px 40px 32px; border-bottom: 1px solid var(--rule); }
   .blog-headline { font-family: var(--serif); font-size: 42px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
@@ -31,8 +31,8 @@ const posts = (await getCollection('blog')).sort(
 </style>
 
 <div class="blog-header">
-  <h1 class="blog-headline">Writing</h1>
-  <p class="blog-sub">Thinking on strategy, leadership, and building businesses that last.</p>
+  <h1 class="blog-headline">Thinking</h1>
+  <p class="blog-sub">Thinking on transformation, incentives, and why capable organisations make predictably bad decisions.</p>
 </div>
 
 <div class="blog-list">

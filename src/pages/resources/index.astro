@@ -1,42 +1,20 @@
 ---
 import Base from '../../layouts/Base.astro';
 
-const resources = [
+const tools = [
   {
-    category: 'Strategy',
-    title: 'The 3-Horizon Growth Framework',
-    desc: 'A structured approach to balancing short-term performance with medium and long-term positioning. Used across consulting engagements to prioritise investment.',
-    type: 'Framework',
+    num: '01',
+    title: 'Organisational Diagnostic',
+    subtitle: 'Where Transformation Stalls',
+    desc: 'A structured tool for mapping the gap between stated strategy and operating reality. Identifies where incentives, decision-making, and accountability structures are producing outcomes at odds with organisational intent.',
+    format: 'PDF Worksheet',
   },
   {
-    category: 'Leadership',
-    title: 'The Decision Rights Matrix',
-    desc: 'Clarify who decides, who advises, and who is informed — at every level of the organisation. Removes the ambiguity that slows teams down.',
-    type: 'Template',
-  },
-  {
-    category: 'Operations',
-    title: 'Quarterly Business Review Template',
-    desc: 'A structured QBR format that surfaces the right questions: what worked, what didn\'t, and what needs to change in the next 90 days.',
-    type: 'Template',
-  },
-  {
-    category: 'Coaching',
-    title: 'The Leadership Audit',
-    desc: 'A self-assessment tool for founders and senior leaders. 20 questions across 5 dimensions — clarity, accountability, communication, energy, and leverage.',
-    type: 'Self-assessment',
-  },
-  {
-    category: 'Strategy',
-    title: 'Competitive Positioning Canvas',
-    desc: 'Map your market position against what customers actually value — not what you assume they value. Forces honest conversation about differentiation.',
-    type: 'Framework',
-  },
-  {
-    category: 'Operations',
-    title: 'The Accountability Stack',
-    desc: 'A simple system for translating annual objectives into weekly team actions, with clear ownership and escalation paths at each level.',
-    type: 'Framework',
+    num: '02',
+    title: 'Leadership Readiness Assessment',
+    subtitle: 'Before the Programme Starts',
+    desc: 'A diagnostic for leadership teams preparing for significant change. Maps where genuine alignment exists, where it doesn\'t, and what needs to be resolved before a transformation programme can succeed.',
+    format: 'PDF Worksheet',
   },
 ];
 ---
@@ -45,36 +23,39 @@ const resources = [
   .resources-header { padding: 48px 40px 32px; border-bottom: 1px solid var(--rule); }
   .resources-headline { font-family: var(--serif); font-size: 42px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
   .resources-sub { font-size: 14px; color: var(--mid); }
-  .resources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); }
-  .resource-card { background: var(--paper); padding: 32px; transition: background 0.15s; }
-  .resource-card:hover { background: white; }
-  .resource-category { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; font-weight: 500; }
-  .resource-title { font-family: var(--serif); font-size: 17px; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
-  .resource-desc { font-size: 12px; line-height: 1.7; color: var(--mid); margin-bottom: 20px; }
-  .resource-tag { display: inline-block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--rule); color: var(--mid); }
+  .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); }
+  .tool-card { background: var(--paper); padding: 40px; }
+  .tool-num { font-family: var(--serif); font-size: 11px; color: var(--accent); margin-bottom: 20px; display: block; }
+  .tool-title { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
+  .tool-subtitle { font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--mid); margin-bottom: 20px; }
+  .tool-desc { font-size: 13px; line-height: 1.75; color: var(--mid); margin-bottom: 28px; }
+  .tool-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 20px; }
+  .tool-format { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
+  .tool-badge { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border: 1px solid var(--rule); color: var(--mid); }
   @media (max-width: 768px) {
     .resources-header { padding: 32px 20px 24px; }
     .resources-headline { font-size: 32px; }
-    .resources-grid { grid-template-columns: 1fr; }
-    .resource-card { padding: 24px 20px; }
-  }
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .resources-grid { grid-template-columns: repeat(2, 1fr); }
+    .tools-grid { grid-template-columns: 1fr; }
+    .tool-card { padding: 28px 20px; }
   }
 </style>
 
 <div class="resources-header">
-  <h1 class="resources-headline">Resources</h1>
-  <p class="resources-sub">Frameworks and tools I use with clients. Free to apply.</p>
+  <h1 class="resources-headline">Diagnostic Tools</h1>
+  <p class="resources-sub">Practical tools for understanding what is actually in the way.</p>
 </div>
 
-<div class="resources-grid">
-  {resources.map(r => (
-    <div class="resource-card">
-      <div class="resource-category">{r.category}</div>
-      <div class="resource-title">{r.title}</div>
-      <p class="resource-desc">{r.desc}</p>
-      <span class="resource-tag">{r.type}</span>
+<div class="tools-grid">
+  {tools.map(t => (
+    <div class="tool-card">
+      <span class="tool-num">{t.num}</span>
+      <div class="tool-title">{t.title}</div>
+      <div class="tool-subtitle">{t.subtitle}</div>
+      <p class="tool-desc">{t.desc}</p>
+      <div class="tool-footer">
+        <span class="tool-format">{t.format}</span>
+        <span class="tool-badge">Coming Soon</span>
+      </div>
     </div>
   ))}
 </div>
